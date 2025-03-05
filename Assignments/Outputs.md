@@ -8,3 +8,8 @@ Day-2-2
 ![image](https://github.com/user-attachments/assets/0dc14973-bad3-437f-b2a9-c22718633050)
 
 
+
+Assignmet -2
+
+![image](https://github.com/user-attachments/assets/73aa2b3d-bb61-463f-8242-78a98f33734e)
+
