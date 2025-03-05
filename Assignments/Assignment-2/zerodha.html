@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerodha Pricing</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 50px;
+    background: white;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav{
+    height: 40px;
+    justify-content: center;
+    align-items: center;    
+    display: flex;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: gray;
+    font-size: 16px;
+}
+
+nav ul li .active {
+    color: #5794e5;
+    font-weight: bold;
+}
+
+.menu {
+    font-size: 22px;
+    color: black;
+}
+
+.price-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 50px;
+    gap: 40px;
+}
+
+.price-card {
+    flex: 1;
+    max-width: 350px;
+}
+
+.h3 {
+    margin: 15px 0;
+    font-size: 30px;
+    color: black;
+}
+
+p {
+    font-size: 17px;
+    color: gray;
+    line-height: 25px;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../../pics/main-logo.png" width="130px" height="20px" alt="">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Signup</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#" class="active">Pricing</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#" class="menu">&#9776;</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="price-container">
+        <div class="price-card">
+            <img src="../../pics/image1.png" width="170px" height="150px" alt="">
+            <p class="h3">Free equity delivery</p>
+            <p>All equity delivery investments (NSE, BSE), are absolutely free — ₹0 brokerage.</p>
+        </div>
+        <div class="price-card">
+            <img src="../../pics/image2.png" width="250px" height="150px" alt="">
+            <p class="h3">Intraday and F&O trades</p>
+            <p>Flat ₹20 or 0.03% (whichever is lower) per executed order on intraday trades across equity, currency, and commodity trades. Flat ₹20 on all option trades.</p>
+        </div>
+        <div class="price-card">
+            <img src="../../pics/image1.png" width="170px" height="150px" alt="">
+            <p class="h3">Free direct MF</p>
+            <p>All direct mutual fund investments are absolutely free — ₹0 commissions & DP charges.</p>
+        </div>
+    </section>
+</body>
+</html>
