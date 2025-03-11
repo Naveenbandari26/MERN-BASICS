@@ -1,0 +1,28 @@
+<!-- 6d-e -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>discount</title>
+</head>
+<body>
+    <input id="input" type="number">
+<button onclick="submit()">Enter</button>
+<script>
+    const isHoliday = false;
+    const submit = () => {
+        const input = document.getElementById("input");
+        const age = input.value; 
+        if((!isHoliday) && (age<=6 || age>=65)){
+            console.log("Discount!!");
+        }
+        else{
+            console.log("NO discount");
+        }
+    }
+</script>
+
+</body>
+</html>
