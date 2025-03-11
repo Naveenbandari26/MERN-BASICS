@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Temperature</title>
+</head>
+<body>
+    <script>
+        const celtoFarhen=(cel)=>{
+            const farhen=(cel *9/5)+32
+            return farhen
+        }
+        const farhentoCelsius=(far)=>{
+            const cel=(far-32)*5/9;
+            return cel;
+        }
+        const convertTemp=(degrees,unit)=>{
+            let res=0;
+            let u=""
+            if(unit==="C"){
+                res=celtoFarhen(degrees);
+                u="F";
+            }
+            else{
+                res=farhentoCelsius(degrees);
+                u="C";
+            }
+            return res+u;
+
+        }
+        var f=celtoFarhen(25);
+        var c=farhentoCelsius(f);
+        var res1=convertTemp(c,"C");
+        var res2=convertTemp(f,"F");
+        console.log(`fareh ${f}`);
+        console.log("celsius "+c);
+        console.log(res1,res2);
+    </script>
+    
+</body>
+</html>
