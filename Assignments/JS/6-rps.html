@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RPS</title>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <button onclick="
+        const n = Math.random();
+        let result='';
+        if(n < 0.33) {
+            result = 'Rock';
+        } else if (n < 0.66) {
+            result=`Paper`;
+        } else {
+            result=`Scissors`;
+        }
+            console.log(`Computer chose ${result}`);
+            let ans='';
+            if(result === 'Rock') {
+                ans = 'Tie';
+            } else if (result === 'Paper') {
+                ans=`You lose`;
+            } else {
+                ans=`You win`;
+            }
+            alert(` ${ans}`);
+    ">Rock</button>
+    <button onclick="
+         const n = Math.random();
+        let result='';
+        if(n < 0.33) {
+            result = 'Rock';
+        } else if (n < 0.66) {
+            result=`Paper`;
+        } else {
+            result=`Scissors`;
+        }
+            console.log(`Computer chose ${result}`);
+            let ans='';
+            if(result === 'Rock') {
+                ans = 'You win';
+            } else if (result === 'Paper') {
+                ans=`Tie`;
+            } else {
+                ans=`You lose`;
+            }
+            alert(` ${ans}`);
+    ">Paper</button>
+    <button onclick="
+         const n = Math.random();
+        let result='';
+        if(n < 0.33) {
+            result = 'Rock';
+        } else if (n < 0.66) {
+            result=`Paper`;
+        } else {
+            result=`Scissors`;
+        }
+            console.log(`Computer chose ${result}`);
+            let ans='';
+            if(result === 'Rock') {
+                ans = 'You lose';
+            } else if (result === 'Paper') {
+                ans=`You win`;
+            } else {
+                ans=`Tie`;
+            }
+            alert(` ${ans}`);
+    ">Scissors</button>
+    <script>
+
+    </script>
+</body>
+</html>
