@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+    <style>
+        *{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>My List</h1>
+        <ul id="myList">
+            <li class="item">Item 1</li>
+            <li class="item">Item 2</li>
+            <li class="item">Item 3</li>
+        </ul>
+        <button id="addButton">Add Item</button>
+    </div>
+    <script>
+        const mylist = document.getElementById('myList');
+        const addButton = document.getElementById('addButton');
+        
+        addButton.addEventListener('click',function(){
+            const len = mylist.children.length;
+            const newItem = document.createElement('li');
+            newItem.className = 'item';
+            newItem.textContent = 'Item ' + (len + 1);
+            //adding the clicking event to the new item
+            newItem.addEventListener('click', function() {
+                this.remove();
+            });
+            mylist.appendChild(newItem);
+        })
+        document.querySelectorAll('.item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.remove();
+            });
+        });
+    </script>
+</body>
+</html>
