@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Processor</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .transaction-form {
+            margin-bottom: 20px;
+        }
+
+        .results {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        select, input {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        .transaction-list {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Transaction Processor</h2>
+        
+        <div class="transaction-form">
+            <select id="type">
+                <option value="deposit">Deposit</option>
+                <option value="withdrawal">Withdrawal</option>
+            </select>
+            <input type="number" id="amount" placeholder="Amount" min="0" step="1">
+            <button onclick="addTransaction()">Add Transaction</button>
+        </div>
+
+        <div class="transaction-list" id="transactionList">
+            <h3>Transactions:</h3>
+            <ul id="transactions"></ul>
+        </div>
+
+        <button onclick="processAllTransactions()">Process Transactions</button>
+
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        let transactionArray = [];
+
+        function processTransactions(transactions) {
+            let finalBalance = 0;
+            let totalDeposits = 0;
+            let totalWithdrawals = 0;
+
+            for (const transaction of transactions) {
+                if (transaction.type === 'deposit') {
+                    finalBalance += transaction.amount;
+                    totalDeposits += transaction.amount;
+                } else if (transaction.type === 'withdrawal') {
+                    finalBalance -= transaction.amount;
+                    totalWithdrawals += transaction.amount;
+                }
+            }
+
+            return {
+                finalBalance,
+                totalDeposits,
+                totalWithdrawals
+            };
+        }
+
+        function addTransaction() {
+            const type = document.getElementById('type').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+
+            if (isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+
+            const transaction = {
+                type: type,
+                amount: amount
+            };
+
+            transactionArray.push(transaction);
+            updateTransactionList();
+            document.getElementById('amount').value = '';
+        }
+
+        function updateTransactionList() {
+            const list = document.getElementById('transactions');
+            list.innerHTML = '';
+            
+            for (const transaction of transactionArray) {
+                const li = document.createElement('li');
+                li.textContent = `${transaction.type}: $${transaction.amount.toFixed(2)}`;
+                list.appendChild(li);
+            }
+        }
+
+        function processAllTransactions() {
+            if (transactionArray.length === 0) {
+                document.getElementById('results').innerHTML='Please add some transactions first';
+                return;
+            }
+
+            const result = processTransactions(transactionArray);
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h3>Results:</h3>
+                <p>Final Balance: $${result.finalBalance.toFixed(2)}</p>
+                <p>Total Deposits: $${result.totalDeposits.toFixed(2)}</p>
+                <p>Total Withdrawals: $${result.totalWithdrawals.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
