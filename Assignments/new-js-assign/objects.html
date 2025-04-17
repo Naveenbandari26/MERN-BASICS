@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .book-form {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .book-list {
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
+        .book-item {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Library Management System</h1>
+    
+    <div class="book-form">
+        <h2>Add New Book</h2>
+        <input type="text" id="title" placeholder="Title" required>
+        <input type="text" id="author" placeholder="Author" required>
+        <input type="text" id="isbn" placeholder="ISBN" required>
+        <button onclick="addNewBook()">Add Book</button>
+    </div>
+
+    <div>
+        <button onclick="showAvailableBooks()">Show Available Books</button>
+        <button onclick="showBorrowedBooks()">Show Borrowed Books</button>
+    </div>
+
+    <div id="bookList" class="book-list"></div>
+
+    <script>
+        // Book Class
+        class Book {
+            constructor(title, author, isbn) {
+                this.title = title;
+                this.author = author;
+                this.isbn = isbn;
+                this.isBorrowed = false;
+            }
+
+            borrow() {
+                if (!this.isBorrowed) {
+                    this.isBorrowed = true;
+                    return true;
+                }
+                return false;
+            }
+
+            returnBook() {
+                if (this.isBorrowed) {
+                    this.isBorrowed = false;
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        // Library Class
+        class Library {
+            constructor() {
+                this.books = [];
+            }
+
+            addBook(book) {
+                if (this.findBookByISBN(book.isbn)) {
+                    return false;
+                }
+                this.books.push(book);
+                return true;
+            }
+
+            findBookByISBN(isbn) {
+                return this.books.find(book => book.isbn === isbn);
+            }
+
+            listAvailableBooks() {
+                return this.books.filter(book => !book.isBorrowed);
+            }
+
+            listBorrowedBooks() {
+                return this.books.filter(book => book.isBorrowed);
+            }
+        }
+
+        // Create library instance
+        const library = new Library();
+
+        // UI Functions
+        function addNewBook() {
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const isbn = document.getElementById('isbn').value;
+
+            if (!title || !author || !isbn) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            const book = new Book(title, author, isbn);
+            if (library.addBook(book)) {
+                alert('Book added successfully');
+                clearForm();
+                showAvailableBooks();
+            } else {
+                alert('Book with this ISBN already exists');
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('title').value = '';
+            document.getElementById('author').value = '';
+            document.getElementById('isbn').value = '';
+        }
+
+        function displayBooks(books) {
+            const bookList = document.getElementById('bookList');
+            bookList.innerHTML = '';
+
+            books.forEach(book => {
+                const bookDiv = document.createElement('div');
+                bookDiv.className = 'book-item';
+                bookDiv.innerHTML = `
+                    <strong>Title:</strong> ${book.title}<br>
+                    <strong>Author:</strong> ${book.author}<br>
+                    <strong>ISBN:</strong> ${book.isbn}<br>
+                    <strong>Status:</strong> ${book.isBorrowed ? 'Borrowed' : 'Available'}<br>
+                    <button onclick="toggleBorrowStatus('${book.isbn}')">
+                        ${book.isBorrowed ? 'Return Book' : 'Borrow Book'}
+                    </button>
+                `;
+                bookList.appendChild(bookDiv);
+            });
+        }
+
+        function showAvailableBooks() {
+            displayBooks(library.listAvailableBooks());
+        }
+
+        function showBorrowedBooks() {
+            displayBooks(library.listBorrowedBooks());
+        }
+
+        function toggleBorrowStatus(isbn) {
+            const book = library.findBookByISBN(isbn);
+            if (book) {
+                if (book.isBorrowed) {
+                    book.returnBook();
+                } else {
+                    book.borrow();
+                }
+                showAvailableBooks();
+            }
+        }
+    </script>
+</body>
+</html>
