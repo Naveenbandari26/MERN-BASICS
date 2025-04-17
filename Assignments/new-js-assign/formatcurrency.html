@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Format Currency</title>
+</head>
+<body>
+    <h1>Format Currency</h1>
+    <input type="number" id="amount" placeholder="Enter amount" step="1">
+    <select name="" id="code">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+    </select>
+    <button id="formatButton">Format Currency</button>
+    
+    <p id="formattedCurrency"></p>
+    <script>
+        function formattedCurrency(amount,currentCode) {
+            const options = { style: 'currency', currency: currentCode };
+            return new Intl.NumberFormat('en-US', options).format(amount);
+        }
+        document.getElementById('formatButton').addEventListener('click', function() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const currentCode = document.getElementById("code").value; // You can change this to any currency code you want
+            const formatted = formattedCurrency(amount, currentCode);
+            document.getElementById('formattedCurrency').innerText = formatted;
+        });
+    </script>
+</body>
+</html>

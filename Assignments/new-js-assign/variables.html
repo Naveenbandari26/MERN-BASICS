@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Variable Scope Demo</title>
+</head>
+<body>
+    <h1>Variable Scope Examples</h1>
+    <div id="output"></div>
+
+    <script>
+        // 1. Global Scope
+        let globalVar = "I'm global";
+        var oldGlobalVar = "I'm also global";
+
+        // 2. Function Scope (Local Scope)
+        function demonstrateScopes() {
+            let functionScopedVar = "I'm function-scoped";
+            
+            console.log(globalVar); 
+
+            // 3. Block Scope
+            if (true) {
+                let blockScopedVar = "I'm block-scoped";
+                var notReallyBlockScoped = "I'm function-scoped despite being in a block";
+                const alsoBlockScoped = "I'm block-scoped too";
+
+                console.log(blockScopedVar); 
+                console.log(alsoBlockScoped); 
+            }
+            console.log(notReallyBlockScoped); 
+        }
+
+        // 4. Variable Shadowing Example
+        let shadowedVar = "global value";
+        function shadowingDemo() {
+            let shadowedVar = "local value"; // Shadows the global variable
+            console.log(shadowedVar); // Prints "local value"
+        }
+
+        // Test the scopes
+        demonstrateScopes();
+        shadowingDemo();
+        console.log(shadowedVar); // Prints "global value"
+    </script>
+</body>
+</html>

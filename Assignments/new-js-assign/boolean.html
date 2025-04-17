@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Boolean Conditions Evaluator</title>
+    <style>
+        .input-group {
+            margin: 10px 0;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conditions Evaluator</h1>
+    
+    <form id="conditionsForm">
+        <div class="input-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" required>
+        </div>
+
+        <div class="input-group">
+            <label for="hasLicense">Has License:</label>
+            <input type="checkbox" id="hasLicense">
+        </div>
+
+        <div class="input-group">
+            <label for="temperature">Temperature:</label>
+            <input type="number" id="temperature" required>
+        </div>
+
+        <div class="input-group">
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" id="humidity" min="0" max="100" required>
+        </div>
+
+        <div class="input-group">
+            <label for="role">Role:</label>
+            <select id="role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+                <option value="editor">Editor</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="isActive">Is Active:</label>
+            <input type="checkbox" id="isActive" checked>
+        </div>
+
+        <div class="input-group">
+            <label for="accountBalance">Account Balance:</label>
+            <input type="number" id="accountBalance" required>
+        </div>
+
+        <div class="input-group">
+            <label for="hasOverdraft">Has Overdraft:</label>
+            <input type="checkbox" id="hasOverdraft">
+        </div>
+
+        <div class="input-group">
+            <label for="emergencyLevel">Emergency Level:</label>
+            <select id="emergencyLevel">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="lastMaintenance">Last Maintenance:</label>
+            <input type="date" id="lastMaintenance">
+        </div>
+
+        <div class="input-group">
+            <label for="daysSinceService">Days Since Service:</label>
+            <input type="number" id="daysSinceService" min="0" required>
+        </div>
+
+        <div class="input-group">
+            <label for="isOperational">Is Operational:</label>
+            <input type="checkbox" id="isOperational" checked>
+        </div>
+
+        <button type="submit">Evaluate Conditions</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        function evaluateConditions(obj) {
+            // Driving eligibility check
+            if (obj.age >= 18 && obj.hasLicense) {
+                return "Eligible to drive";
+            }
+
+            // Weather comfort check
+            if (obj.temperature > 30 || obj.humidity > 70) {
+                return "Warning: High discomfort level";
+            }
+
+            // Access control check
+            if ((obj.role === "admin" || obj.role === "editor") && obj.isActive) {
+                return "Access granted";
+            }
+
+            // Payment verification check
+            if (obj.accountBalance > 1000 && !obj.hasOverdraft) {
+                return "Payment approved";
+            }
+
+            // Emergency alert check
+            if (obj.emergencyLevel === "high" || (obj.temperature > 40 && obj.humidity > 85)) {
+                return "Emergency protocol activated";
+            }
+
+            // Maintenance schedule check
+            if ((!obj.lastMaintenance || obj.daysSinceService > 30) && obj.isOperational) {
+                return "Maintenance required";
+            }
+
+            return "No specific conditions met";
+        }
+
+        document.getElementById('conditionsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                age: parseInt(document.getElementById('age').value),
+                hasLicense: document.getElementById('hasLicense').checked,
+                temperature: parseFloat(document.getElementById('temperature').value),
+                humidity: parseInt(document.getElementById('humidity').value),
+                role: document.getElementById('role').value,
+                isActive: document.getElementById('isActive').checked,
+                accountBalance: parseFloat(document.getElementById('accountBalance').value),
+                hasOverdraft: document.getElementById('hasOverdraft').checked,
+                emergencyLevel: document.getElementById('emergencyLevel').value,
+                lastMaintenance: document.getElementById('lastMaintenance').value,
+                daysSinceService: parseInt(document.getElementById('daysSinceService').value),
+                isOperational: document.getElementById('isOperational').checked
+            };
+
+            const result = evaluateConditions(formData);
+            document.getElementById('result').innerHTML = `<strong>Result:</strong> ${result}`;
+            console.log('Evaluation result:', result);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Manipulation Demo</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+    </ul>
+
+    <script>
+        // 1. Select all list items
+        const listItems = document.querySelectorAll('li');
+        console.log('All list items:', listItems);
+
+        // 2. Iterate and log text content
+        listItems.forEach((item, index) => {
+            console.log(`Item ${index + 1} text:`, item.textContent);
+        });
+
+        // 3. Add highlight class to every second item
+        listItems.forEach((item, index) => {
+            if (index % 2 === 1) {
+                item.classList.add('highlight');
+                console.log(`Highlighted item ${index + 1}`);
+            }
+        });
+
+        // 4. Log total number of items
+        console.log('Total number of items:', listItems.length);
+    </script>
+</body>
+</html>

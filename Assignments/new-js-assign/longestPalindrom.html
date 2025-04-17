@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest palindrome</title>
+</head>
+<body>
+  <h1>Palindrome checker</h1>
+  <input type="text" id="inputString" placeholder="Enter a string">
+  <button id="checkButton">Check longest Palindrome</button>
+    <p id="result"></p>
+    <script>
+        function longestPalindrome(str) {
+            let longest = '';
+
+            for (let i = 0; i < str.length; i++) {
+                for (let j = i + 1; j <= str.length; j++) {
+                    const substring = str.slice(i, j);
+                    if (isPalindrome(substring) && substring.length > longest.length) {
+                        longest = substring;
+                    }
+                }
+            }
+
+            return longest;
+        }
+
+        function isPalindrome(s) {
+            return s === s.split('').reverse().join('');
+        }
+
+        document.getElementById('checkButton').addEventListener('click', function() {
+            const inputString = document.getElementById('inputString').value;
+            const result = longestPalindrome(inputString);
+            document.getElementById('result').innerText = result ? `Longest palindrome: ${result}` : 'No palindrome found';
+        });
+    </script>
+</body>
+</html>
