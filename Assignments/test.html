@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div>
+        <p id="message">Hello</p>
+        <p id="message">Hi</p>
+    </div>
+    <button id="he">Hell</button> -->
+
+    <input type="text" id="name" placeholder="Enter your calculation">
+    <button id="click">click</button>
+    <script>
+         /*const calculator={
+            add: function(a,b){
+                return a + b;
+            }
+
+         }
+         console.log(calculator.add(2,3));
+
+         console.log('5'!==2)
+
+         const number = (Math.random() * 10).toFixed(0);
+         console.log(number);
+         document.title="welcome"
+         console.log(document.title)
+         document.body.style="background-color:blue"
+            console.log(document.body.style.backgroundColor)
+            let str="Naveen"
+            console.log(str.split("").reverse().join(""))
+            document.getElementById("he").addEventListener("click",()=>{
+                console.log("Hello")
+            })
+
+        const newDiv =document.createElement('div')
+        newDiv.innerHTML="hi"
+        document.body.appendChild(newDiv)
+        console.log(eval("2+3*4-5/2"))*/
+        const button=document.getElementById("click")
+        button.addEventListener("click",()=>{
+            console.log(eval(document.getElementById("name").value))
+        })
+        
+        ar=[1,2,3,4,5]
+        ar.filter((item)=>{
+            for(let i=2; i<=Math.sqrt(item); i++){
+                if(item % i === 0){
+                    return;
+                }
+            }
+            console.log(item);
+        })
+    </script>
+</body>
+</html>
