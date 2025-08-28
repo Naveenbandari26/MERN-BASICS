@@ -1,0 +1,46 @@
+Implement stack using array
+Difficulty: EasyAccuracy: 54.76%Submissions: 291K+Points: 2Average Time: 25m
+Write a program to implement a stack using an array oper[]. You need  to complete the push(int x) and pop() methods inside a class MyStack to simulate the standard stack operations:
+push(x): Pushes the integer x onto the stack.
+pop(): Removes and returns the topmost element of the stack. If the stack is empty, return -1.
+You will be given a list of space-separated queries consisting of two types:
+Type 1 : 1 x — Push x into the stack.
+Type 2 : 2  — Pop the top element from the stack and print it. If the stack is empty, print -1.
+Note: It is guaranteed that for Type 1, there will always be a value x.
+Examples :
+
+Input: oper[] = [1, 2, 1, 3, 2, 1, 4, 2] 
+Output: [3, 4]
+Explanation: 
+push(2)   the stack will be {2}
+push(3)   the stack will be {2 3}
+pop()     poped element will be 3, the stack will be {2}
+push(4)   the stack will be {2 4}
+pop()     poped element will be 4
+Input: oper[] = [2, 1, 4, 1, 5, 2]
+Output: [-1, 5]
+Constraints:
+1 ≤ numbers of calls made to push, pop ≤ 100
+1 ≤ x ≤ 100
+
+COde: 
+
+class MyStack {
+    int[] arr=new int[100];
+    int top=-1;
+    public void push(int x) {
+        if(top<100){
+            top++;
+        arr[top]=x;
+        }
+    }
+
+    public int pop() {
+        int temp=-1;
+        if(top>=0){
+        temp=arr[top];
+        top--;
+        }
+        return temp;
+    }
+}
